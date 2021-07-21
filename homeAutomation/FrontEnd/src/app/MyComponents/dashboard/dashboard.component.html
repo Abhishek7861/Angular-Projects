@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+      <div class="col-8">
+        <div class="row row-cols-3">
+          <div *ngFor="let appliance of applianceService.appliances" class="col mt-4">
+            <div class="card bg-light" style="width: 21rem;">
+              <div class="card-header">Appliance: {{appliance.applianceName}}</div>
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Room: {{appliance.applianceRoom}}</h6>
+                <div *ngIf="appliance.applianceState; else elseBlock">State: ON</div>
+                      <ng-template #elseBlock>State: OFF</ng-template>
+              </div>
+              <div class="card-footer bg-transparent border-dark">
+                <a class="btn btn-success card-link" (click)="ON(appliance)">ON</a>
+                <a class="btn btn-primary card-link" (click)="OFF(appliance)">OFF</a>
+                <a class="btn btn-warning card-link" (click)="EDIT(appliance)">EDIT</a>
+                <a class="btn btn-danger card-link" (click)="DEL(appliance)">DEL</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <form (submit)="onSubmit()">
+          <div class="form-group">
+            <label for="exampleInputAppliance"> Enter Appliance name</label>
+            <input type="text" name="applianceName" [(ngModel)]="applianceName" class="form-control" id="exampleInputApplianceRoom">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputApplianceRoom"> Enter Appliance Room</label>
+            <input type="text" name="applianceRoom" [(ngModel)]="applianceRoom" class="form-control" id="exampleInputApplianceRoom">
+          </div>
+      
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
